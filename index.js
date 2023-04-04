@@ -1,12 +1,12 @@
 const fs = require('fs');
 const { Configuration, OpenAIApi } = require("openai");
 const { callbackify } = require('util');
-const configuration = new Configuration({apiKey: "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",});
+const configuration = new Configuration({apiKey: /* api key */,});
 const openai = new OpenAIApi(configuration);
 const inputTemplate = {
     "model": "text-davinci-003",
-    "temperature": 0,
-    "max_tokens": 100
+    "temperature": 0.25,
+    "max_tokens": 200
 }
 
 async function readFile(){
@@ -54,7 +54,7 @@ const mainFunc = async () => {
         ${commandExecuted}
         and received error message:
         ${error}
-        How can I solve this error?`;
+        Help me understand this error and explain how I can solve this error.`;
         const response = await callGPT(prompt);
         return {
             "command_executed": commandExecuted,
